@@ -8,6 +8,7 @@ class GlobalnotesApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }
