@@ -26,6 +26,7 @@ public class Note {
     @NonNull
     String body;
 
+    @NonNull
     @ManyToOne
     User owner;
 
