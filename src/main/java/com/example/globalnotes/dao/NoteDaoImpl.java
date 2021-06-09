@@ -1,5 +1,6 @@
 package com.example.globalnotes.dao;
 
+import com.example.globalnotes.model.Note;
 import com.example.globalnotes.model.User;
 import lombok.RequiredArgsConstructor;
 
@@ -9,32 +10,33 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+
 @RequiredArgsConstructor
-public class UserDaoImpl implements UserDao {
+public class NoteDaoImpl implements NoteDao{
 
     private final EntityManager em;
 
     @Override
-    public List<User> findAll() {
-        return em.createQuery("select u from User u", User.class)
+    public List<Note> findAll() {
+        return em.createQuery("select n from Note n", Note.class)
                 .getResultList();
     }
 
     @Override
-    public List<User> findAllByIds(Iterable<UUID> var1) {
-        List<User> userList = new ArrayList<>();
+    public List<Note> findAllByIds(Iterable<UUID> var1) {
+        List<Note> notes = new ArrayList<>();
         for (UUID id :
                 var1) {
-            userList.add(em.find(User.class, id));
+            notes.add(em.find(Note.class, id));
         }
-        return userList;
+        return notes;
     }
 
     @Override
-    public List<User> saveAll(Iterable<User> var1) {
+    public List<Note> saveAll(Iterable<Note> var1) {
         em.getTransaction().begin();
         try {
-            for(Iterator<User> iterator = var1.iterator(); iterator.hasNext();){
+            for(Iterator<Note> iterator = var1.iterator(); iterator.hasNext();){
                 em.persist(iterator.next());
             }
             em.getTransaction().commit();
@@ -43,14 +45,14 @@ public class UserDaoImpl implements UserDao {
             throw e;
         }
 
-        return (List<User>) var1;
+        return (List<Note>) var1;
     }
 
     @Override
-    public void deleteInBatch(Iterable<User> var1) {
+    public void deleteInBatch(Iterable<Note> var1) {
         em.getTransaction().begin();
         try {
-            for(Iterator<User> iterator = var1.iterator(); iterator.hasNext();){
+            for(Iterator<Note> iterator = var1.iterator(); iterator.hasNext();){
                 em.remove(iterator.next());
             }
             em.getTransaction().commit();
@@ -61,7 +63,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getOneById(UUID id) {
-       return em.find(User.class, id);
+    public Note getOneById(UUID id) {
+        return em.find(Note.class, id);
     }
 }
