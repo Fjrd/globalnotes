@@ -33,7 +33,6 @@ public class SmokeTest {
 
 
     @Test
-    //@Order(1) doesn't work
     public void createUserTest(){
         entityManager.getTransaction().begin();
         entityManager.persist(user);
@@ -41,12 +40,12 @@ public class SmokeTest {
     }
 
     @Test
-    //@Order(2) doesn't work
     public void createNoteTest() {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
         entityManager.persist(note);
         entityManager.getTransaction().commit();
+
 
     }
 

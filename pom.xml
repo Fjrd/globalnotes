@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
-        <relativePath/> <!-- lookup parent from com.example.globalnotes.repository -->
+        <relativePath/> <!-- lookup parent from com.example.globalnotes.dao -->
     </parent>
     <groupId>com.example</groupId>
     <artifactId>globalnotes</artifactId>
