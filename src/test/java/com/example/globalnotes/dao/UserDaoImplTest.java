@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,20 +19,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserDaoImplTest {
 
     private EntityManagerFactory factory;
-    private EntityManager manager;
+    private EntityManager em;
     private UserDaoImpl userDao;
 
     @BeforeEach
     public void setUp() {
         factory = Persistence.createEntityManagerFactory("TestPersistenceUnit");
-        manager = factory.createEntityManager();
-        userDao = new UserDaoImpl(manager);
+        em = factory.createEntityManager();
+        userDao = new UserDaoImpl(em);
     }
 
     @AfterEach
     public void tearDown() {
-        if (manager != null) {
-            manager.close();
+        if (em != null) {
+            em.close();
         }
         if (factory != null) {
             factory.close();
@@ -40,6 +41,10 @@ class UserDaoImplTest {
 
     @Test
     void findAll() {
+        saveMultipleUser();
+        List<User> users = userDao.findAll();
+        assertNotNull(users);
+
     }
 
     @Test
