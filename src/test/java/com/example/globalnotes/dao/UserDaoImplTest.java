@@ -86,6 +86,11 @@ class UserDaoImplTest {
 
     @Test
     void deleteInBatch() {
+        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        userDao.saveAll(Arrays.asList(testUser1));
+        assertEquals(testUser1, userDao.getOneById(testUser1.getId()));
+        userDao.deleteInBatch(Arrays.asList(testUser1));
+        assertNull(userDao.getOneById(testUser1.getId()));
     }
 
     @Test

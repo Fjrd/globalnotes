@@ -48,7 +48,16 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteInBatch(Iterable<User> var1) {
-
+        em.getTransaction().begin();
+        try {
+            for(Iterator<User> iterator = var1.iterator(); iterator.hasNext();){
+                em.remove(iterator.next());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        }
     }
 
     @Override
