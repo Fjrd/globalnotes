@@ -28,6 +28,7 @@ public class Note {
 
     @NonNull
     @ManyToOne
+    @JoinColumn(name = "users_id")
     User owner;
 
 

@@ -33,6 +33,6 @@ public class User {
     @NonNull
     String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     List<Note> notes;
 }
