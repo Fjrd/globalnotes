@@ -4,6 +4,7 @@ import com.example.globalnotes.model.User;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -11,7 +12,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserDaoImpl implements UserDao {
 
-    private final EntityManager manager;
+    private final EntityManager em;
 
     @Override
     public List<User> findAll() {
@@ -19,21 +20,26 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAllById(Iterable<UUID> var1) {
-        return null;
+    public List<User> findAllByIds(Iterable<UUID> var1) {
+        List<User> userList = new ArrayList<>();
+        for (UUID id :
+                var1) {
+            userList.add(em.find(User.class, id));
+        }
+        return userList;
     }
 
     @Override
     public List<User> saveAll(Iterable<User> var1) {
 
-        manager.getTransaction().begin();
+        em.getTransaction().begin();
         try {
             for(Iterator<User> iterator = var1.iterator(); iterator.hasNext();){
-                manager.persist(iterator.next());
+                em.persist(iterator.next());
             }
-            manager.getTransaction().commit();
+            em.getTransaction().commit();
         } catch (Exception e) {
-            manager.getTransaction().rollback();
+            em.getTransaction().rollback();
             throw e;
         }
 
@@ -46,16 +52,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getOne(UUID id) {
-        User user;
-        manager.getTransaction().begin();
-        try {
-            user = manager.find(User.class, id);
-            manager.getTransaction().commit();
-        } catch (Exception e){
-            manager.getTransaction().rollback();
-            throw e;
-        }
-        return user;
+    public User getOneById(UUID id) {
+       return em.find(User.class, id);
     }
 }

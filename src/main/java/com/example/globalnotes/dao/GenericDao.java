@@ -8,12 +8,12 @@ public interface GenericDao<T, ID> {
 
     List<T> findAll();
 
-    List<T> findAllById(Iterable<ID> var1);
+    List<T> findAllByIds(Iterable<ID> var1);
 
     List<T> saveAll(Iterable<T> var1);
 
     void deleteInBatch(Iterable<T> var1);
 
-    T getOne(ID id);
+    T getOneById(ID id);
 
 }

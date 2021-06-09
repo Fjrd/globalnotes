@@ -1,7 +1,6 @@
 package com.example.globalnotes.dao;
 
 import com.example.globalnotes.model.User;
-import org.hibernate.hql.spi.id.cte.CteValuesListBulkIdStrategy;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import javax.persistence.Persistence;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 class UserDaoImplTest {
@@ -44,6 +44,18 @@ class UserDaoImplTest {
 
     @Test
     void findAllById() {
+        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        User testUser2 = new User("asdas", "pass", "name3", "email2@mail.com");
+        User testUser3 = new User("gfdhfgd", "word", "n123", "asdsa@mail.com");
+        User testUser4 = new User("234gf", "123", "nfgfgg", "e23423@mail.com");
+        List<User> users = Arrays.asList(testUser1, testUser2, testUser3, testUser4);
+        userDao.saveAll(users);
+        List<UUID> userIdList = users
+                .stream()
+                .map(User::getId)
+                .collect(Collectors.toList());
+        List<User> usersFindedById = userDao.findAllByIds(userIdList);
+        assertTrue(users.containsAll(usersFindedById));
     }
 
     @Test
@@ -77,10 +89,10 @@ class UserDaoImplTest {
     }
 
     @Test
-    void getOne() {
+    void getOneById() {
         User testUser1 = new User("login", "password", "name1", "email@mail.com");
         userDao.saveAll(Arrays.asList(testUser1));
         assertNotNull(testUser1.getId());
-        assertEquals(testUser1, userDao.getOne(testUser1.getId()));
+        assertEquals(testUser1, userDao.getOneById(testUser1.getId()));
     }
 }
