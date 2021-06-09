@@ -46,7 +46,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getOne(UUID var1) {
-        return null;
+    public User getOne(UUID id) {
+        User user;
+        manager.getTransaction().begin();
+        try {
+            user = manager.find(User.class, id);
+            manager.getTransaction().commit();
+        } catch (Exception e){
+            manager.getTransaction().rollback();
+            throw e;
+        }
+        return user;
     }
 }

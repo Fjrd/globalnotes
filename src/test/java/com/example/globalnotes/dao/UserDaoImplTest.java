@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 class UserDaoImplTest {
@@ -77,5 +78,9 @@ class UserDaoImplTest {
 
     @Test
     void getOne() {
+        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        userDao.saveAll(Arrays.asList(testUser1));
+        assertNotNull(testUser1.getId());
+        assertEquals(testUser1, userDao.getOne(testUser1.getId()));
     }
 }

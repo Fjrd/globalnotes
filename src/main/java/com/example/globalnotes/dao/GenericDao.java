@@ -14,6 +14,6 @@ public interface GenericDao<T, ID> {
 
     void deleteInBatch(Iterable<T> var1);
 
-    T getOne(ID var1);
+    T getOne(ID id);
 
 }
