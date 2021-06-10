@@ -69,7 +69,6 @@ class UserDaoImplTest {
         userDao.saveAll(Arrays.asList(testUser));
         assertNotNull(testUser);
         assertNotNull(testUser.getId());
-        assertTrue(false);
 
     }
     
