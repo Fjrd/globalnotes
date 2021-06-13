@@ -8,4 +8,4 @@ Notes can be linked with each other.
 Notes can be private and public (shared between users).
 Notes view in tree structure;
 
-Optional: Search, Tags, Visual Links
+Optional: Search, Tags, Visual Links  
