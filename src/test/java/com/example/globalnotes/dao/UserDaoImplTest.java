@@ -2,18 +2,15 @@ package com.example.globalnotes.dao;
 
 import com.example.globalnotes.configs.AppConfig;
 import com.example.globalnotes.model.User;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -26,26 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class UserDaoImplTest {
 
+    @Autowired
     private EntityManagerFactory factory;
+
+    @Autowired
     private EntityManager em;
+
+    @Autowired
     private UserDaoImpl userDao;
-
-    @BeforeEach
-    public void setUp() {
-        factory = Persistence.createEntityManagerFactory("TestPersistenceUnit");
-        em = factory.createEntityManager();
-        userDao = new UserDaoImpl(em);
-    }
-
-    @AfterEach
-    public void tearDown() {
-        if (em != null) {
-            em.close();
-        }
-        if (factory != null) {
-            factory.close();
-        }
-    }
 
     @Test
     void findAll() {
