@@ -9,8 +9,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -22,12 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @ContextConfiguration(classes = AppConfig.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class UserDaoImplTest {
-
-    @Autowired
-    private EntityManagerFactory factory;
-
-    @Autowired
-    private EntityManager em;
 
     @Autowired
     private UserDaoImpl userDao;
