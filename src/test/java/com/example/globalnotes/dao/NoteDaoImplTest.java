@@ -75,7 +75,7 @@ class NoteDaoImplTest {
     void deleteInBatch() {
         List<Note> notes = saveMultipleNotes();
         assertNotNull(notes);
-        userDao.deleteInBatch((Iterable)notes);
+        noteDao.deleteInBatch((Iterable)notes);
         assertNotEquals(notes, noteDao.findAllByIds(notes
                 .stream()
                 .map(Note::getId)
