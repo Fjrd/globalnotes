@@ -2,6 +2,7 @@ package com.example.globalnotes.dao;
 
 import com.example.globalnotes.model.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
+@Repository
 public class UserDaoImpl implements UserDao {
 
     private final EntityManager em;

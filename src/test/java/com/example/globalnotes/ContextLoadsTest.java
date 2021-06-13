@@ -2,6 +2,8 @@ package com.example.globalnotes;
 
 
 import com.example.globalnotes.configs.AppConfig;
+import com.example.globalnotes.dao.NoteDao;
+import com.example.globalnotes.dao.UserDao;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,18 @@ public class ContextLoadsTest {
     @Autowired
     private ApplicationContext context;
 
+    @Autowired
+    UserDao userDao;
+
+    @Autowired
+    NoteDao noteDao;
+
     @Test
     void contextLoads(){
         assertNotNull(context.getBean("entityManager"));
+        assertNotNull(context.getBean("userDaoImpl"));
+        assertNotNull(context.getBean("noteDaoImpl"));
+
+
     }
 }
