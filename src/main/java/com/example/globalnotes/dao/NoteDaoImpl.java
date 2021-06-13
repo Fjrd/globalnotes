@@ -1,13 +1,11 @@
 package com.example.globalnotes.dao;
 
 import com.example.globalnotes.model.Note;
-import com.example.globalnotes.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,8 +36,8 @@ public class NoteDaoImpl implements NoteDao{
     public List<Note> saveAll(Iterable<Note> var1) {
         em.getTransaction().begin();
         try {
-            for(Iterator<Note> iterator = var1.iterator(); iterator.hasNext();){
-                em.persist(iterator.next());
+            for (Note note : var1) {
+                em.persist(note);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -54,8 +52,8 @@ public class NoteDaoImpl implements NoteDao{
     public void deleteInBatch(Iterable<Note> var1) {
         em.getTransaction().begin();
         try {
-            for(Iterator<Note> iterator = var1.iterator(); iterator.hasNext();){
-                em.remove(iterator.next());
+            for (Note note : var1) {
+                em.remove(note);
             }
             em.getTransaction().commit();
         } catch (Exception e) {

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,8 +35,8 @@ public class UserDaoImpl implements UserDao {
     public List<User> saveAll(Iterable<User> var1) {
         em.getTransaction().begin();
         try {
-            for(Iterator<User> iterator = var1.iterator(); iterator.hasNext();){
-                em.persist(iterator.next());
+            for (User user : var1) {
+                em.persist(user);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -52,8 +51,8 @@ public class UserDaoImpl implements UserDao {
     public void deleteInBatch(Iterable<User> var1) {
         em.getTransaction().begin();
         try {
-            for(Iterator<User> iterator = var1.iterator(); iterator.hasNext();){
-                em.remove(iterator.next());
+            for (User user : var1) {
+                em.remove(user);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
