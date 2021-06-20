@@ -1,7 +1,6 @@
 package com.example.globalnotes;
 
 
-import com.example.globalnotes.configs.AppConfig;
 import com.example.globalnotes.dao.NoteDao;
 import com.example.globalnotes.dao.UserDao;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = AppMain.class)
 public class ContextLoadsTest {
 
     @Autowired

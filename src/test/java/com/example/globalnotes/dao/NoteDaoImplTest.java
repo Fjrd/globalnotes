@@ -1,6 +1,6 @@
 package com.example.globalnotes.dao;
 
-import com.example.globalnotes.configs.AppConfig;
+import com.example.globalnotes.AppMain;
 import com.example.globalnotes.model.Note;
 import com.example.globalnotes.model.User;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = AppMain.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class NoteDaoImplTest {
 
