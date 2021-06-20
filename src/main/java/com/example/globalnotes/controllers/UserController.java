@@ -4,6 +4,7 @@ package com.example.globalnotes.controllers;
 import com.example.globalnotes.dao.UserDao;
 import com.example.globalnotes.model.Note;
 import com.example.globalnotes.model.User;
+import com.example.globalnotes.repository.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,19 +23,14 @@ import java.util.List;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
+
     @NonNull
-    UserDao userDao;
-
-
-    public void save(){
-        userDao.saveAll(Collections.singletonList(new User("login", "pass", "name", "email")));
-
-    }
+    UserRepository userRepository;
 
     @GetMapping
     public String getAllUsers(Model model){
-        List<User> userList = userDao.findAll();
-        model.addAttribute("users", userList);
+        Iterable<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
         return "user/UserList";
     }
 
@@ -46,11 +42,10 @@ public class UserController {
     @PostMapping()
     public String addNewUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult){
-        save();
         if (bindingResult.hasErrors()) {
             return "user/AddNewUserForm";
         }
-        userDao.saveAll(Collections.singletonList(user));
+        userRepository.save(user);
         return "redirect:/users";
     }
 }
