@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <form action="/users/new" method="get">
+            <button type="submit" >Add new user</button>
+        </form></td>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th> Login </th>
+                        <th> Password </th>
+                        <th> Name </th>
+                        <th> Email </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td><span th:text="${user.login}"></span></td>
+                        <td><span th:text="${user.password}"></span></td>
+                        <td><span th:text="${user.name}"></span></td>
+                        <td><span th:text="${user.email}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

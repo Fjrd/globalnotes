@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -51,10 +52,9 @@ class UserDaoImplTest {
     @Test
     void saveOneUser() {
         User testUser = new User("login", "password", "name", "email@mail.com");
-        userDao.saveAll(Arrays.asList(testUser));
+        userDao.saveAll(Collections.singletonList(testUser));
         assertNotNull(testUser);
         assertNotNull(testUser.getId());
-
     }
     
     @Test

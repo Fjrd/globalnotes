@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 @SpringBootApplication
 public class AppMain {
+
     @Bean
     public EntityManagerFactory factory() {
         return Persistence.createEntityManagerFactory("TestPersistenceUnit");

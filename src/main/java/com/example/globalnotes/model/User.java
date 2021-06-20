@@ -8,10 +8,10 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
+@ToString
 public class User {
 
     @Id
@@ -33,6 +33,6 @@ public class User {
     @NonNull
     String email;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "author")
     List<Note> notes;
 }

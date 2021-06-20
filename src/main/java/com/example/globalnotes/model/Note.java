@@ -12,6 +12,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 @Setter
+@ToString
 public class Note {
 
     @Id
@@ -24,12 +25,12 @@ public class Note {
     String name;
 
     @NonNull
-    String body;
+    String message;
 
     @NonNull
     @ManyToOne
     @JoinColumn(name = "users_id")
-    User owner;
+    User author;
 
 
 }
