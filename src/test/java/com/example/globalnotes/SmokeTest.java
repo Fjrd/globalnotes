@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+@Disabled("migrate to spring data")
 public class SmokeTest {
 
     static EntityManagerFactory factory;
@@ -45,7 +46,5 @@ public class SmokeTest {
         entityManager.persist(user);
         entityManager.persist(note);
         entityManager.getTransaction().commit();
-
-
     }
 }

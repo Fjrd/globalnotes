@@ -2,6 +2,7 @@ package com.example.globalnotes.dao;
 
 import com.example.globalnotes.AppMain;
 import com.example.globalnotes.model.User;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled("migrate to spring data")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppMain.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
