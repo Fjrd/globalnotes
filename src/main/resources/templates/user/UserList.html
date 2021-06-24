@@ -9,6 +9,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th> Id </th>
                         <th> Login </th>
                         <th> Password </th>
                         <th> Name </th>
@@ -17,6 +18,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="user : ${users}">
+                        <td><span th:text="${user.id}"></span></td>
                         <td><span th:text="${user.login}"></span></td>
                         <td><span th:text="${user.password}"></span></td>
                         <td><span th:text="${user.name}"></span></td>

@@ -32,7 +32,7 @@ public class NoteController {
 
     @GetMapping("/new")
     public String addNewNoteForm(){
-        return "notes/AddNewNoteForm";
+        return "note/AddNewNoteForm";
     }
 
     @PostMapping()
