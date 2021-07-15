@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-
-<p>
-    <br>Welcome to globalnote - free personal notes service.
+    <p>Welcome to globalnote - free personal notes service.
     <br>
-    <br><a href="/users">List of Users</a>
-    <br><a href="/notes">List of Notes</a>
+    <p about="${userSession.isLoggedIn()}">1</p>
+    <p th:text="'Hello, ' + ${userSession.login}">2</p>
+    <a href="/users">List of Users</a>
+    <br>
+    <a href="/notes">List of Notes</a>
 </p>
-
 
 </body>
 </html>

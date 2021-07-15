@@ -51,7 +51,7 @@ class NoteDaoImplTest {
 
     @Test
     List<Note> saveMultipleNotes() {
-        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        User testUser1 = new User("LoginForm.html", "password", "name1", "email@mail.com");
         userDao.saveAll(Arrays.asList(testUser1));
         Note testNote1 = new Note("name", "body", testUser1);
         Note testNote2 = new Note("name2", "body", testUser1);
@@ -79,7 +79,7 @@ class NoteDaoImplTest {
 
     @Test
     void getOneById() {
-        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        User testUser1 = new User("LoginForm.html", "password", "name1", "email@mail.com");
         userDao.saveAll(Arrays.asList(testUser1));
         Note testNote1 = new Note("name", "body", testUser1);
         noteDao.saveAll(Arrays.asList(testNote1));

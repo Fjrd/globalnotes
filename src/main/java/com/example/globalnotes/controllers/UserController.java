@@ -1,23 +1,17 @@
 package com.example.globalnotes.controllers;
 
 
-import com.example.globalnotes.dao.UserDao;
-import com.example.globalnotes.model.Note;
 import com.example.globalnotes.model.User;
 import com.example.globalnotes.repository.UserRepository;
+import com.example.globalnotes.web.UserSession;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
-import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -35,17 +29,35 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String addNewNoteForm(){
-        return "user/AddNewUserForm";
+    public String showRegistrationForm(){
+        return "user/RegistrationForm";
     }
 
     @PostMapping()
-    public String addNewUser(@ModelAttribute("user") @Valid User user,
-                             BindingResult bindingResult){
+    public String handleRegistration(@ModelAttribute("user") @Valid User user,
+                                     BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "user/AddNewUserForm";
+            return "user/RegistrationForm";
         }
         userRepository.save(user);
         return "redirect:/users";
+    }
+
+    @GetMapping("/login")
+    public String showLoginForm(){
+        return "user/LoginForm";
+    }
+
+    @PostMapping("/login")
+    public String handleLoginForm(@RequestParam String login,
+                                  @RequestParam String password,
+                                  UserSession userSession){
+        User user = userRepository.findByLoginAndPassword(login, password);
+        if (user != null){
+            userSession.setId(user.getId());
+            userSession.setLogin(user.getLogin());
+            return "redirect:/";
+        }
+        else return "redirect:/users/login";
     }
 }

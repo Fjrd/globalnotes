@@ -37,7 +37,7 @@ class UserDaoImplTest {
 
     @Test
     void findAllById() {
-        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        User testUser1 = new User("LoginForm.html", "password", "name1", "email@mail.com");
         User testUser2 = new User("asdas", "pass", "name3", "email2@mail.com");
         User testUser3 = new User("gfdhfgd", "word", "n123", "asdsa@mail.com");
         User testUser4 = new User("234gf", "123", "nfgfgg", "e23423@mail.com");
@@ -53,7 +53,7 @@ class UserDaoImplTest {
 
     @Test
     void saveOneUser() {
-        User testUser = new User("login", "password", "name", "email@mail.com");
+        User testUser = new User("LoginForm.html", "password", "name", "email@mail.com");
         userDao.saveAll(Collections.singletonList(testUser));
         assertNotNull(testUser);
         assertNotNull(testUser.getId());
@@ -61,7 +61,7 @@ class UserDaoImplTest {
     
     @Test
     void saveMultipleUser() {
-        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        User testUser1 = new User("LoginForm.html", "password", "name1", "email@mail.com");
         User testUser2 = new User("asdas", "pass", "name3", "email2@mail.com");
         User testUser3 = new User("gfdhfgd", "word", "n123", "asdsa@mail.com");
         User testUser4 = new User("234gf", "123", "nfgfgg", "e23423@mail.com");
@@ -78,7 +78,7 @@ class UserDaoImplTest {
 
     @Test
     void deleteInBatch() {
-        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        User testUser1 = new User("LoginForm.html", "password", "name1", "email@mail.com");
         userDao.saveAll(Arrays.asList(testUser1));
         assertEquals(testUser1, userDao.getOneById(testUser1.getId()));
         userDao.deleteInBatch(Arrays.asList(testUser1));
@@ -87,7 +87,7 @@ class UserDaoImplTest {
 
     @Test
     void getOneById() {
-        User testUser1 = new User("login", "password", "name1", "email@mail.com");
+        User testUser1 = new User("LoginForm.html", "password", "name1", "email@mail.com");
         userDao.saveAll(Arrays.asList(testUser1));
         assertNotNull(testUser1.getId());
         assertEquals(testUser1, userDao.getOneById(testUser1.getId()));

@@ -22,7 +22,7 @@ public class SmokeTest {
         factory = Persistence.createEntityManagerFactory("TestPersistenceUnit");
         entityManager = factory.createEntityManager();
 
-        user = new User("login", "password", "name", "email@com");
+        user = new User("LoginForm.html", "password", "name", "email@com");
         note = new Note("name", "body", user);
     }
 
